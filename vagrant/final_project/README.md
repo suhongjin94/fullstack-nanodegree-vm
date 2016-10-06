@@ -14,8 +14,8 @@ Services:
 
 Setup:
 -----------
-Instructions are up on [Udacity] (https://www.udacity.com/wiki/ud088/vagrant).
-Make sure to have SQLAlchemy and Flask installed if not using the VM Udacity gives.
+Instructions are up on [Udacity] (https://www.udacity.com/wiki/ud088/vagrant).  
+Make sure to have SQLAlchemy and Flask installed if not using the VM Udacity gives.  
 To run:
 `python app.py`
 
