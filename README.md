@@ -16,3 +16,4 @@ Setup:
 -----------
 Instructions are up on [Udacity] (https://www.udacity.com/wiki/ud088/vagrant).
 
+Final project is in vagrant/final_project
