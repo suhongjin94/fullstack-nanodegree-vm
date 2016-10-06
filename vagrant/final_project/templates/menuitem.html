@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Restaurant Menu</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{url_for('static', filename = 'css/3-col-portfolio.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename = 'css/menuitem-styles.css')}}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{url_for('restaurants')}}">Restaurants</a>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Header -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header"> {{restaurant.name}}
+                    <a href="{{url_for('editRestaurant', restaurant_id = restaurant.id)}}" class="btn btn-default">
+                        <span class="glyphicon glyphicon-pencil"></span></a>
+                    <a href="{{url_for('deleteRestaurant', restaurant_id = restaurant.id)}}" class="btn btn-default">
+                        <span class="glyphicon glyphicon-trash"></span></a>
+
+                    <a href="{{url_for('newMenuItem', restaurant_id = restaurant.id)}}" class="btn btn-primary right">
+                        <span class="glyphicon glyphicon-plus"></span> Menu Item
+                    </a>
+                </h1>
+
+            </div>
+        </div>
+        
+        </br>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-info" role="alert">{{message}}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        {% if items|length == 0 %}
+        <div class = "nameAndPrice">
+            <h4><span class = "name"><p><strong>No items in the menu</strong></p></span></h4>
+        </div>
+        {% else %}
+        {% for i in items %}
+
+        <div class = "nameAndPrice">
+            <h4><span class = "name"><p><strong>{{i.name}}</strong></p></span></h4>
+            <span class = "price"><p>{{i.price}} </p></span>
+        </div>
+
+        <p class="description">{{i.description}}</p>
+        <div class="menu-end">
+            <a href="{{url_for('editMenuItem', menu_id = i.id, restaurant_id = restaurant.id)}}" class="btn btn-default">Edit</a>  
+            <a href="{{url_for('deleteMenuItem', menu_id = i.id, restaurant_id = restaurant.id)}}" class="btn btn-default">Delete</a>
+        </div>
+        </br>      
+
+        {% endfor %}
+        {% endif %}
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Suhong Jin's Restaurant Website</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="{{url_for('static', filename='js/jquery.js')}}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+
+</body>
+
+</html>
